@@ -17,7 +17,7 @@ class CommentsController extends Controller
 
 
 
-        $messageArray = array($morningMessage => 'おはよう', $afternoonMessage => 'こんにちは', $eveningMessage => 'こんにちは', $nightMessage => 'こんばんは');
+        $messageArray = array($morningMessage => 'おはよう', $afternoonMessage => 'こんにちは', $eveningMessage => 'こんばんは', $nightMessage => 'おやすみ');
 
         
         // howMessageに「morning、afternoon、evening、night」のいずれかが入った場合の処理
