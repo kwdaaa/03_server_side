@@ -52,6 +52,7 @@ class CommentsController extends Controller
                 $howMessageToShow = 'ランダムなメッセージ';
                 $messageArrayKey = array_rand($messageArray, 1);
                 $messageToShow = $messageArray[$messageArrayKey];
+                break;
 
                 // その他の値が入った場合
             default:
