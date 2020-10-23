@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class CommentsController extends Controller
 {
 
-    public function messages($howMessage)
+    public function messages($time_zone)
     {
         $morningMessage = '朝のあいさつ';
         $afternoonMessage = '昼のあいさつ';
@@ -19,76 +19,76 @@ class CommentsController extends Controller
 
         $messageArray = array($morningMessage => 'おはよう', $afternoonMessage => 'こんにちは', $eveningMessage => 'こんばんは', $nightMessage => 'おやすみ');
 
-        
-        // howMessageに「morning、afternoon、evening、night」のいずれかが入った場合の処理
-        // swich文で、howMessageに入る値によって処理を切り替える。
-        switch ($howMessage) {
+
+        // time_zoneに「morning、afternoon、evening、night」のいずれかが入った場合の処理
+        // swich文で、time_zoneに入る値によって処理を切り替える。
+        switch ($time_zone) {
                 // morningの場合 $messageToShow 変数の中にあいさつ文をいれる。
             case 'morning':
-                $howMessageToShow = $morningMessage;
+                $time_zoneToShow = $morningMessage;
                 $messageToShow = $messageArray[$morningMessage];
                 break;
 
                 // afternoonの場合 $messageToShow 変数の中にあいさつ文をいれる。
             case 'afternoon':
-                $howMessageToShow = $afternoonMessage;
+                $time_zoneToShow = $afternoonMessage;
                 $messageToShow = $messageArray[$afternoonMessage];
                 break;
 
                 // eveningの場合 $messageToShow 変数の中にあいさつ文をいれる。
             case 'evening':
-                $howMessageToShow = $eveningMessage;
+                $time_zoneToShow = $eveningMessage;
                 $messageToShow = $messageArray[$eveningMessage];
                 break;
 
                 // nightの場合 $messageToShow 変数の中にあいさつ文をいれる。
             case 'night':
-                $howMessageToShow = $nightMessage;
+                $time_zoneToShow = $nightMessage;
                 $messageToShow = $messageArray[$nightMessage];
                 break;
 
                 // freewordの場合 $messageに入った値（がんばって など）を$messageToShow 変数の中にいれる。
             case 'random':
-                $howMessageToShow = 'ランダムなメッセージ';
+                $time_zoneToShow = 'ランダムなメッセージ';
                 $messageArrayKey = array_rand($messageArray, 1);
                 $messageToShow = $messageArray[$messageArrayKey];
                 break;
 
-                // その他の値が入った場合、$howMessageToShow の中には空の文字列をいれる。
+                // その他の値が入った場合、$time_zoneToShow の中には空の文字列をいれる。
             default:
-                $howMessageToShow = '';
+                $time_zoneToShow = '';
                 $messageToShow =  'comments/ のあとに morning、afternoon、evening、night、random 以外の値が入っています。';
                 break;
         }
 
-        // あいさつ文の形態が入った $howMessageToShow を howMessageToShowキーに入れて「comments」フォルダの中の「show.blade.php」ファイルの中でキーを使って計算結果を呼び起こす。
+        // あいさつ文の形態が入った $time_zoneToShow を time_zoneToShowキーに入れて「comments」フォルダの中の「show.blade.php」ファイルの中でキーを使って計算結果を呼び起こす。
         // あいさつ文が入った $messageToShow を messageToShowキーに入れて「comments」フォルダの中の「show.blade.php」ファイルの中でキーを使って計算結果を呼び起こす。
         // 'comments.show'は 「comments」フォルダの中の「show.blade.php」ファイルの中
-        return view('comments.show', ['howMessageToShow' => $howMessageToShow], ['messageToShow' => $messageToShow]);
+        return view('comments.show', ['time_zoneToShow' => $time_zoneToShow], ['messageToShow' => $messageToShow]);
     }
 
 
-    public function freeMessages($howMessage, $setMessage)
+    public function freeMessages($time_zone, $message)
     {
-        
 
-        switch ($howMessage) {
-                // freewordの場合 $setMessageに入った値（がんばって など）を$messageToShow 変数の中にいれる。
+
+        switch ($time_zone) {
+                // freewordの場合 $messageに入った値（がんばって など）を$messageToShow 変数の中にいれる。
             case 'freeword':
-                $howMessageToShow = '自由なメッセージ';
-                $messageToShow = $setMessage;
+                $time_zoneToShow = '自由なメッセージ';
+                $messageToShow = $message;
                 break;
 
-                // その他の値が入った場合、$howMessageToShow の中には空の文字列をいれる。
+                // その他の値が入った場合、$time_zoneToShow の中には空の文字列をいれる。
             default:
-                $howMessageToShow = '';
+                $time_zoneToShow = '';
                 $messageToShow =  'comments/ のあとに freeword 以外の値が入っています。';
                 break;
         }
 
-        // あいさつ文の形態が入った $howMessageToShow を howMessageToShowキーに入れて「comments」フォルダの中の「show.blade.php」ファイルの中でキーを使って計算結果を呼び起こす。
+        // あいさつ文の形態が入った $time_zoneToShow を time_zoneToShowキーに入れて「comments」フォルダの中の「show.blade.php」ファイルの中でキーを使って計算結果を呼び起こす。
         // あいさつ文が入った $messageToShow を messageToShowキーに入れて「comments」フォルダの中の「show.blade.php」ファイルの中でキーを使って計算結果を呼び起こす。
         // 'comments.show'は 「comments」フォルダの中の「show.blade.php」ファイルの中
-        return view('comments.show', ['howMessageToShow' => $howMessageToShow], ['messageToShow' => $messageToShow]);
+        return view('comments.show', ['time_zoneToShow' => $time_zoneToShow], ['messageToShow' => $messageToShow]);
     }
 }

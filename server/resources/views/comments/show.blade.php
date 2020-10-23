@@ -9,7 +9,7 @@
 <body>
     
     {{-- メッセージの形態 --}}
-    <h1>{{ $howMessageToShow }}</h1>
+    <h1>{{ $time_zoneToShow }}</h1>
 
     {{-- メッセージの内容 --}}
     <h2>{{ $messageToShow }}</h2>
