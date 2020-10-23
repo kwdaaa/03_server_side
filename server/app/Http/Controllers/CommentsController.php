@@ -54,9 +54,10 @@ class CommentsController extends Controller
                 $messageToShow = $messageArray[$messageArrayKey];
                 break;
 
-                // その他の値が入った場合
+                // その他の値が入った場合、$howMessageToShow の中には空の文字列をいれる。
             default:
-                $howMessageToShow =  'comments/ のあとに morning、afternoon、evening、night、random 以外の値が入っています。';
+                $howMessageToShow = '';
+                $messageToShow =  'comments/ のあとに morning、afternoon、evening、night、random 以外の値が入っています。';
                 break;
         }
 
@@ -78,9 +79,10 @@ class CommentsController extends Controller
                 $messageToShow = $setMessage;
                 break;
 
-                // その他の値が入った場合
+                // その他の値が入った場合、$howMessageToShow の中には空の文字列をいれる。
             default:
-                $howMessageToShow =  'comments/ のあとに freeword 以外の値が入っています。';
+                $howMessageToShow = '';
+                $messageToShow =  'comments/ のあとに freeword 以外の値が入っています。';
                 break;
         }
 
