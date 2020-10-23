@@ -10,47 +10,48 @@ class CommentsController extends Controller
 
     public function messages($howMessage)
     {
-
-        $morningMessage = 'おはよう';
-        $afternoonMessage = 'こんにちは';
-        $eveningMessage = 'こんばんは';
-        $nightMessage = 'おやすみ';
-
-        $arrayMessage = [$morningMessage, $afternoonMessage, $eveningMessage, $nightMessage];
+        $morningMessage = '朝のあいさつ';
+        $afternoonMessage = '昼のあいさつ';
+        $eveningMessage = '夕方のあいさつ';
+        $nightMessage = '夜のあいさつ';
 
 
+
+        $messageArray = array($morningMessage => 'おはよう', $afternoonMessage => 'こんにちは', $eveningMessage => 'こんにちは', $nightMessage => 'こんばんは');
+
+        
         // howMessageに「morning、afternoon、evening、night」のいずれかが入った場合の処理
         // swich文で、howMessageに入る値によって処理を切り替える。
         switch ($howMessage) {
                 // morningの場合 $messageToShow 変数の中にあいさつ文をいれる。
             case 'morning':
-                $howMessageToShow = '朝のあいさつ';
-                $messageToShow = $morningMessage;
+                $howMessageToShow = $morningMessage;
+                $messageToShow = $messageArray[$morningMessage];
                 break;
 
                 // afternoonの場合 $messageToShow 変数の中にあいさつ文をいれる。
             case 'afternoon':
-                $howMessageToShow = '昼のあいさつ';
-                $messageToShow = $afternoonMessage;
+                $howMessageToShow = $afternoonMessage;
+                $messageToShow = $messageArray[$afternoonMessage];
                 break;
 
                 // eveningの場合 $messageToShow 変数の中にあいさつ文をいれる。
             case 'evening':
-                $howMessageToShow = '夕方のあいさつ';
-                $messageToShow = $eveningMessage;
+                $howMessageToShow = $eveningMessage;
+                $messageToShow = $messageArray[$eveningMessage];
                 break;
 
                 // nightの場合 $messageToShow 変数の中にあいさつ文をいれる。
             case 'night':
-                $howMessageToShow = '夜のあいさつ';
-                $messageToShow = $nightMessage;
+                $howMessageToShow = $nightMessage;
+                $messageToShow = $messageArray[$nightMessage];
                 break;
 
                 // freewordの場合 $messageに入った値（がんばって など）を$messageToShow 変数の中にいれる。
             case 'random':
                 $howMessageToShow = 'ランダムなメッセージ';
-                $messageToShow = $arrayMessage[rand(0, count($arrayMessage) - 1)];
-                break;
+                $messageArrayKey = array_rand($messageArray, 1);
+                $messageToShow = $messageArray[$messageArrayKey];
 
                 // その他の値が入った場合
             default:
