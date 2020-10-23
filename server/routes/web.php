@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// @で実行したい関数の指定をする。
+// http://localhost/comments/{howMessage}/{message}のURLにアクセスがあった場合、CommentsControlleのmessages関数を実行
+// {howMessage}には morning / afternoon / evening / night / freeword /random のいずれかが入る。
+// {message}には 自由なメッセージが入る。（'がんばって' など）
+// 例：http://localhost/comments/freeword/がんばって
+Route::get('comments/{howMessage}/{setmMessage}', 'CommentsController@messages');
