@@ -77,8 +77,7 @@ class CommentsController extends Controller
             case 'freeword':
                 $time_zoneToShow = '自由なメッセージ';
                 $messageToShow = $message;
-                break;
-
+                
                 // その他の値が入った場合、$time_zoneToShow の中には空の文字列をいれる。
             default:
                 $time_zoneToShow = '';
