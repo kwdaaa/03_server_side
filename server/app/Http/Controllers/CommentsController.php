@@ -16,7 +16,7 @@ class CommentsController extends Controller
         $eveningMessage = 'こんばんは';
         $nightMessage = 'おやすみ';
 
-        $message = [$morningMessage, $afternoonMessage, $eveningMessage, $nightMessage];
+        $arrayMessage = [$morningMessage, $afternoonMessage, $eveningMessage, $nightMessage];
 
 
         // howMessageに「morning、afternoon、evening、night」のいずれかが入った場合の処理
@@ -49,7 +49,7 @@ class CommentsController extends Controller
                 // freewordの場合 $messageに入った値（がんばって など）を$messageToShow 変数の中にいれる。
             case 'random':
                 $howMessageToShow = 'ランダムなメッセージ';
-                $messageToShow = $message[rand(0, count($message) - 1)];
+                $messageToShow = $arrayMessage[rand(0, count($arrayMessage) - 1)];
                 break;
 
                 // その他の値が入った場合
@@ -59,11 +59,9 @@ class CommentsController extends Controller
         }
 
         // あいさつ文の形態が入った $howMessageToShow を howMessageToShowキーに入れて「comments」フォルダの中の「show.blade.php」ファイルの中でキーを使って計算結果を呼び起こす。
+        // あいさつ文が入った $messageToShow を messageToShowキーに入れて「comments」フォルダの中の「show.blade.php」ファイルの中でキーを使って計算結果を呼び起こす。
         // 'comments.show'は 「comments」フォルダの中の「show.blade.php」ファイルの中
-        return view('comments.show', ['howMessageToShow' => $howMessageToShow]);
-
-        // あいさつ文が入った $messageToShow を messageToShowキーに入れて「show.blade.php」でキーを使って計算結果を呼び起こす。
-        return view('comments.show', ['messageToShow' => $messageToShow]);
+        return view('comments.show', ['howMessageToShow' => $howMessageToShow], ['messageToShow' => $messageToShow]);
     }
 
 
@@ -85,10 +83,8 @@ class CommentsController extends Controller
         }
 
         // あいさつ文の形態が入った $howMessageToShow を howMessageToShowキーに入れて「comments」フォルダの中の「show.blade.php」ファイルの中でキーを使って計算結果を呼び起こす。
+        // あいさつ文が入った $messageToShow を messageToShowキーに入れて「comments」フォルダの中の「show.blade.php」ファイルの中でキーを使って計算結果を呼び起こす。
         // 'comments.show'は 「comments」フォルダの中の「show.blade.php」ファイルの中
-        return view('comments.show', ['howMessageToShow' => $howMessageToShow]);
-
-        // あいさつ文が入った $messageToShow を messageToShowキーに入れて「show.blade.php」でキーを使って計算結果を呼び起こす。
-        return view('comments.show', ['messageToShow' => $messageToShow]);
+        return view('comments.show', ['howMessageToShow' => $howMessageToShow], ['messageToShow' => $messageToShow]);
     }
 }
